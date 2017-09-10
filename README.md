@@ -26,7 +26,7 @@ See documentation: https://docs.mongodb.com/manual/tutorial/enable-authenticatio
 
 ## Usage
 
-Usage is pretty simple [see docs](https://qezz.github.io/) for api, and [test] for small examples
+Usage is pretty simple [see docs](https://qezz.github.io/) for api, and [tests](test) for small examples
 
 Basic usage is
 
