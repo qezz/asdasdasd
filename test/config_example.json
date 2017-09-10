@@ -1,0 +1,23 @@
+{
+  "host": "127.0.0.1",
+  "storage_db": "test_storage",
+  "admin":
+  {
+    "username": "admin",
+    "password": "admin",
+    "default_db": "admin"
+  },
+  "users":
+  {
+    "localpath": "files/",
+    "role_suffix": "_role",
+    "db_suffix": "_storage",
+    "allowed_actions":
+    [
+      "collStats", "convertToCapped", "createCollection", "dbHash",
+      "dbStats", "dropCollection", "createIndex", "dropIndex", "find",
+      "insert", "killCursors", "listIndexes", "listCollections", "remove",
+      "renameCollectionSameDB", "update"
+    ]
+  }
+}

@@ -1,0 +1,2014 @@
+<!doctype html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+    <title>pystorage.storageuser API documentation</title>
+    <meta name="description" content="Public API for storage" />
+
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
+  
+  <style type="text/css">
+  
+* {
+  box-sizing: border-box;
+}
+/*! normalize.css v1.1.1 | MIT License | git.io/normalize */
+
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+audio,
+canvas,
+video {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Firefox 3, and Safari 4.
+ * Known issue: no IE 6 support.
+ */
+
+[hidden] {
+    display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+/**
+ * 1. Prevent system color scheme's background color being used in Firefox, IE,
+ *    and Opera.
+ * 2. Prevent system color scheme's text color being used in Firefox, IE, and
+ *    Opera.
+ * 3. Correct text resizing oddly in IE 6/7 when body `font-size` is set using
+ *    `em` units.
+ * 4. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+    background: #fff; /* 1 */
+    color: #000; /* 2 */
+    font-size: 100%; /* 3 */
+    -webkit-text-size-adjust: 100%; /* 4 */
+    -ms-text-size-adjust: 100%; /* 4 */
+}
+
+/**
+ * Address `font-family` inconsistency between `textarea` and other form
+ * elements.
+ */
+
+html,
+button,
+input,
+select,
+textarea {
+    font-family: sans-serif;
+}
+
+/**
+ * Address margins handled incorrectly in IE 6/7.
+ */
+
+body {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+
+a:focus {
+    outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/**
+ * Address font sizes and margins set differently in IE 6/7.
+ * Address font sizes within `section` and `article` in Firefox 4+, Safari 5,
+ * and Chrome.
+ */
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+}
+
+h5 {
+    font-size: 0.83em;
+    margin: 1.67em 0;
+}
+
+h6 {
+    font-size: 0.67em;
+    margin: 2.33em 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Safari 5, and Chrome.
+ */
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 3+, Safari 4/5, and Chrome.
+ */
+
+b,
+strong {
+    font-weight: bold;
+}
+
+blockquote {
+    margin: 1em 40px;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+
+dfn {
+    font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ * Known issue: no IE 6/7 normalization.
+ */
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 6/7/8/9.
+ */
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+p,
+pre {
+    margin: 1em 0;
+}
+
+/**
+ * Correct font family set oddly in IE 6, Safari 4/5, and Chrome.
+ */
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, serif;
+    _font-family: 'courier new', monospace;
+    font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/**
+ * Address CSS quotes not supported in IE 6/7.
+ */
+
+q {
+    quotes: none;
+}
+
+/**
+ * Address `quotes` property not supported in Safari 4.
+ */
+
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+    font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+dl,
+menu,
+ol,
+ul {
+    margin: 1em 0;
+}
+
+dd {
+    margin: 0 0 0 40px;
+}
+
+/**
+ * Address paddings set differently in IE 6/7.
+ */
+
+menu,
+ol,
+ul {
+    padding: 0 0 0 40px;
+}
+
+/**
+ * Correct list images handled incorrectly in IE 7.
+ */
+
+nav ul,
+nav ol {
+    list-style: none;
+    list-style-image: none;
+}
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+
+/**
+ * 1. Remove border when inside `a` element in IE 6/7/8/9 and Firefox 3.
+ * 2. Improve image quality when scaled in IE 7.
+ */
+
+img {
+    border: 0; /* 1 */
+    -ms-interpolation-mode: bicubic; /* 2 */
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 6/7/8/9, Safari 5, and Opera 11.
+ */
+
+figure {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+/**
+ * Correct margin displayed oddly in IE 6/7.
+ */
+
+form {
+    margin: 0;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct color not being inherited in IE 6/7/8/9.
+ * 2. Correct text not wrapping in Firefox 3.
+ * 3. Correct alignment displayed oddly in IE 6/7.
+ */
+
+legend {
+    border: 0; /* 1 */
+    padding: 0;
+    white-space: normal; /* 2 */
+    *margin-left: -7px; /* 3 */
+}
+
+/**
+ * 1. Correct font size not being inherited in all browsers.
+ * 2. Address margins set differently in IE 6/7, Firefox 3+, Safari 5,
+ *    and Chrome.
+ * 3. Improve appearance and consistency in all browsers.
+ */
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%; /* 1 */
+    margin: 0; /* 2 */
+    vertical-align: baseline; /* 3 */
+    *vertical-align: middle; /* 3 */
+}
+
+/**
+ * Address Firefox 3+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+button,
+input {
+    line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 6+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+
+button,
+select {
+    text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ * 4. Remove inner spacing in IE 7 without affecting normal text inputs.
+ *    Known issue: inner spacing remains in IE 6.
+ */
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+    *overflow: visible;  /* 4 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to content-box in IE 8/9.
+ * 2. Remove excess padding in IE 8/9.
+ * 3. Remove excess padding in IE 7.
+ *    Known issue: excess padding remains in IE 6.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+    *height: 13px; /* 3 */
+    *width: 13px; /* 3 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; /* 2 */
+    box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 3+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 6/7/8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+
+textarea {
+    overflow: auto; /* 1 */
+    vertical-align: top; /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+  </style>
+
+  <style type="text/css">
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+  }
+  body {
+    background: #fff;
+    font-family: "Source Sans Pro", "Helvetica Neueue", Helvetica, sans;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.6em;
+  }
+  #content {
+    width: 70%;
+    max-width: 850px;
+    float: left;
+    padding: 30px 60px;
+    border-left: 1px solid #ddd;
+  }
+  #sidebar {
+    width: 25%;
+    float: left;
+    padding: 30px;
+    overflow: hidden;
+  }
+  #nav {
+    font-size: 130%;
+    margin: 0 0 15px 0;
+  }
+
+  #top {
+    display: block;
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    font-size: .85em;
+    text-transform: uppercase;
+  }
+
+  #footer {
+    font-size: .75em;
+    padding: 5px 30px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+  }
+    #footer p {
+      margin: 0 0 0 30px;
+      display: inline-block;
+    }
+
+  h1, h2, h3, h4, h5 {
+    font-weight: 300;
+  }
+  h1 {
+    font-size: 2.5em;
+    line-height: 1.1em;
+    margin: 0 0 .50em 0;
+  }
+
+  h2 {
+    font-size: 1.75em;
+    margin: 1em 0 .50em 0;
+  }
+
+  h3 {
+    margin: 25px 0 10px 0;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 105%;
+  }
+
+  a {
+    color: #058;
+    text-decoration: none;
+    transition: color .3s ease-in-out;
+  }
+
+  a:hover {
+    color: #e08524;
+    transition: color .3s ease-in-out;
+  }
+
+  pre, code, .mono, .name {
+    font-family: "Ubuntu Mono", "Cousine", "DejaVu Sans Mono", monospace;
+  }
+
+  .title .name {
+    font-weight: bold;
+  }
+  .section-title {
+    margin-top: 2em;
+  }
+  .ident {
+    color: #900;
+  }
+
+  code {
+    background: #f9f9f9;
+  } 
+
+  pre {
+    background: #fefefe;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 0 #f3f3f3;
+    margin: 0 30px;
+    padding: 15px 30px;
+  }
+
+  .codehilite {
+    margin: 0 30px 10px 30px;
+  }
+
+    .codehilite pre {
+      margin: 0;
+    }
+    .codehilite .err { background: #ff3300; color: #fff !important; } 
+
+  table#module-list {
+    font-size: 110%;
+  }
+
+    table#module-list tr td:first-child {
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+    table#module-list td {
+      vertical-align: top;
+      padding-bottom: 8px;
+    }
+
+      table#module-list td p {
+        margin: 0 0 7px 0;
+      }
+
+  .def {
+    display: table;
+  }
+
+    .def p {
+      display: table-cell;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .def p:first-child {
+      white-space: nowrap;
+    }
+
+    .def p:last-child {
+      width: 100%;
+    }
+
+
+  #index {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+    ul#index .class_name {
+      /* font-size: 110%; */
+      font-weight: bold;
+    }
+    #index ul {
+      margin: 0;
+    }
+
+  .item {
+    margin: 0 0 15px 0;
+  }
+
+    .item .class {
+      margin: 0 0 25px 30px;
+    }
+
+      .item .class ul.class_list {
+        margin: 0 0 20px 0;
+      }
+
+    .item .name {
+      background: #fafafa;
+      margin: 0;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 3px;
+      display: inline-block;
+      min-width: 40%;
+    }
+      .item .name:hover {
+        background: #f6f6f6;
+      }
+
+    .item .empty_desc {
+      margin: 0 0 5px 0;
+      padding: 0;
+    }
+
+    .item .inheritance {
+      margin: 3px 0 0 30px;
+    }
+
+    .item .inherited {
+      color: #666;
+    }
+
+    .item .desc {
+      padding: 0 8px;
+      margin: 0;
+    }
+
+      .item .desc p {
+        margin: 0 0 10px 0;
+      }
+
+    .source_cont {
+      margin: 0;
+      padding: 0;
+    }
+
+    .source_link a {
+      background: #ffc300;
+      font-weight: 400;
+      font-size: .75em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 1px 1px 0 #f4b700;
+      
+      padding: 3px 8px;
+      border-radius: 2px;
+      transition: background .3s ease-in-out;
+    }
+      .source_link a:hover {
+        background: #FF7200;
+        text-shadow: none;
+        transition: background .3s ease-in-out;
+      }
+
+    .source {
+      display: none;
+      max-height: 600px;
+      overflow-y: scroll;
+      margin-bottom: 15px;
+    }
+
+      .source .codehilite {
+        margin: 0;
+      }
+
+  .desc h1, .desc h2, .desc h3 {
+    font-size: 100% !important;
+  }
+  .clear {
+    clear: both;
+  }
+
+  @media all and (max-width: 950px) {
+    #sidebar {
+      width: 35%;
+    }
+    #content {
+      width: 65%;
+    }
+  }
+  @media all and (max-width: 650px) {
+    #top {
+      display: none;
+    }
+    #sidebar {
+      float: none;
+      width: auto;
+    }
+    #content {
+      float: none;
+      width: auto;
+      padding: 30px;
+    }
+
+    #index ul {
+      padding: 0;
+      margin-bottom: 15px;
+    }
+    #index ul li {
+      display: inline-block;
+      margin-right: 30px;
+    }
+    #footer {
+      text-align: left;
+    }
+    #footer p {
+      display: block;
+      margin: inherit;
+    }
+  }
+
+  /*****************************/
+
+  </style>
+
+
+  <style type="text/css">
+  
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
+  </style>
+
+  <script type="text/javascript">
+  function toggle(id, $link) {
+    $node = document.getElementById(id);
+    if (!$node)
+    return;
+    if (!$node.style.display || $node.style.display == 'none') {
+    $node.style.display = 'block';
+    $link.innerHTML = 'Hide source &nequiv;';
+    } else {
+    $node.style.display = 'none';
+    $link.innerHTML = 'Show source &equiv;';
+    }
+  }
+  </script>
+</head>
+<body>
+<a href="#" id="top">Top</a>
+
+<div id="container">
+    
+  
+  <div id="sidebar">
+    <h1>Index</h1>
+    <ul id="index">
+
+
+    <li class="set"><h3><a href="#header-classes">Classes</a></h3>
+      <ul>
+        <li class="mono">
+        <span class="class_name"><a href="#pystorage.storageuser.StorageClient">StorageClient</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#pystorage.storageuser.StorageClient.__init__">__init__</a></li>
+    <li class="mono"><a href="#pystorage.storageuser.StorageClient.download_to_file">download_to_file</a></li>
+    <li class="mono"><a href="#pystorage.storageuser.StorageClient.find_dir">find_dir</a></li>
+    <li class="mono"><a href="#pystorage.storageuser.StorageClient.find_file">find_file</a></li>
+    <li class="mono"><a href="#pystorage.storageuser.StorageClient.find_several">find_several</a></li>
+    <li class="mono"><a href="#pystorage.storageuser.StorageClient.list_files">list_files</a></li>
+    <li class="mono"><a href="#pystorage.storageuser.StorageClient.make_dir">make_dir</a></li>
+    <li class="mono"><a href="#pystorage.storageuser.StorageClient.make_dirs">make_dirs</a></li>
+    <li class="mono"><a href="#pystorage.storageuser.StorageClient.move_dir">move_dir</a></li>
+    <li class="mono"><a href="#pystorage.storageuser.StorageClient.remove">remove</a></li>
+    <li class="mono"><a href="#pystorage.storageuser.StorageClient.remove_dir">remove_dir</a></li>
+    <li class="mono"><a href="#pystorage.storageuser.StorageClient.rename">rename</a></li>
+    <li class="mono"><a href="#pystorage.storageuser.StorageClient.switch_user">switch_user</a></li>
+    <li class="mono"><a href="#pystorage.storageuser.StorageClient.upload">upload</a></li>
+  </ul>
+
+        </li>
+      </ul>
+    </li>
+
+    </ul>
+  </div>
+
+    <article id="content">
+      
+  
+
+  
+
+
+  <header id="section-intro">
+  <h1 class="title"><span class="name">pystorage.storageuser</span> module</h1>
+  <p>Public API for storage</p>
+  
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-pystorage.storageuser', this);">Show source &equiv;</a></p>
+  <div id="source-pystorage.storageuser" class="source">
+    <pre><code>"""Public API for storage"""
+
+from pystorage.userinfo import UserInfo
+from pystorage.utils import *
+from pystorage.errors import NoFile, AuthError
+
+import pymongo
+import gridfs
+
+import os
+
+class StorageClient():
+    """This class represents a client api to mongo-based storage.
+
+    Allows to:
+
+    * login with username and password
+    * switch user with another username and password
+    * upload file to storage
+    * download file from storage
+    * update (overwrite) files
+    * delete files
+    * list files in particular directory
+    * make directories
+    * remove directories
+    * rename (move) directories
+    """
+
+    def _login(self, username, password):
+        self.user = UserInfo(username, password)
+        self.auth_str = connection_string(self.user, self.server.config)
+        self.client = pymongo.MongoClient(self.auth_str,
+                                          serverSelectionTimeoutMS=1)
+
+        try:
+            self.client.server_info()
+        except pymongo.errors.OperationFailure:
+            raise AuthError("Wrong username or password.")
+
+        self.db_name = self.user.username + self.server.config["users"]["db_suffix"]
+
+        self.client_gridfs = gridfs.GridFS(self.client[self.server.config["storage_db"]],
+                                           collection=self.db_name)
+        self.client_gfsbucket = gridfs.GridFSBucket(self.client[self.server.config["storage_db"]],
+                                                    bucket_name=self.db_name)
+
+    def __init__(self, username, password, server=None):
+        """Creates a new instance of StorageClient.
+
+        Note: `server` is required, for now.
+
+        """
+
+        if server == None:
+            raise Exception("Server is not provided")
+
+        self.server = server
+        self._login(username, password)
+
+
+    def switch_user(self, username, password):
+        """Switches user to another
+
+        Previous user become logged out
+
+        """
+
+        self.client.close()
+        self._login(username, password)
+
+    def upload(self, source, target_filepath, replace=True):
+        """Uploads a file from `source` path to `target` inside storage
+
+        If `replace` is false, then `AlreadyExists` exception is
+        raised
+
+        """
+
+        target_filepath = normalize_filepath(target_filepath)
+
+        if self.find_file(target_filepath) != None:
+            if replace:
+                self.remove(target_filepath)
+            else:
+                raise AlreadyExists("File already exists")
+
+        self.make_dirs(os.path.dirname(target_filepath))
+
+        with open(source, "rb") as source_file:
+            file_id = self.client_gfsbucket.upload_from_stream(target_filepath,
+                                                               source_file)
+
+
+    def download_to_file(self, filename, target_path = None):
+        """Downloads file from internal storage path (`filename`)
+        to local `target_path`.
+
+        Returns a path of downloaded file.
+
+        If `target_path` is not specified, then saves it to
+        `localpath` (see configuration for details)
+
+        Raises `NoFile` if there is no file by `filename` path
+
+        """
+
+        f_id = self.find_file(filename)
+        if f_id == None:
+            raise NoFile("File", str(filename), "not found.")
+
+        if target_path == None:
+            target_path = filename
+
+        if os.path.dirname(target_path) != "":
+            os.makedirs(os.path.dirname(target_path), exist_ok = True)
+
+        with open(target_path, "wb") as target_file:
+            try:
+                self.client_gfsbucket.download_to_stream(f_id, target_file)
+                return target_path
+            except gridfs.errors.NoFile:
+                raise NoFile("Error: File", str(filename), "condn't been downloaded.")
+
+    def find_file(self, filepath):
+        """Finds file and returns it's `ObjectID`.
+
+        Otherwise, returns `None`.
+
+        """
+
+        if filepath[0] != "/":
+            filepath = "/" + filepath
+        for item in self.client_gfsbucket.find( {"filename": filepath } ).sort("uploadDate", -1).limit(1):
+            return item._id
+
+    def find_dir(self, dirpath):
+        """Finds a directory and returns it's `ObjectID`.
+
+        Otherwise, returns `None`.
+
+        """
+
+        _dir = self.find_file(dirpath)
+
+        if _dir != None and self.client_gridfs.get(_dir).metadata == {"is_dir" : True}:
+            return _dir
+        else:
+            return None
+
+    def find_several(self, filepath):
+        """Returns an iterator over files have been found."""
+
+        return self.client_gfsbucket.find( {"filename": filepath } )
+
+    def rename(self, filepath, new_filepath):
+        """Rename file at `filepath` to `new_filepath`
+
+        If no file was found, raises `NoFile` exception
+
+        """
+
+        f_id = self.find_file(filepath)
+
+        if f_id == None:
+            raise NoFile("Error: File", str(filepath), "not found.")
+
+        self.client_gfsbucket.rename(f_id, new_filepath)
+
+
+    def make_dir(self, dirpath):
+        """Create a pseudo directory. Use `make_dirs` to create nested
+        directories.
+
+        Raises `AlreadyExists` when directory already presented in storage
+
+        """
+
+        dirpath = normalize_dirpath(dirpath)
+
+        ffile = self.find_file(dirpath)
+        if ffile != None:
+            meta = self.client_gridfs.get(ffile).metadata # or self.find_file(dirpath + "/"):
+            if meta == {"is_dir" : False}:
+                raise AlreadyExists("File already exists")
+            elif meta == {"is_dir" : True}:
+                return ffile
+
+        self.client_gridfs.put(b"", filename = dirpath, metadata = { "is_dir": True })
+
+    def make_dirs(self, dirpath):
+        """Similar to make_dir, additionally creates intermediate directories
+        as required.
+
+        """
+
+        if dirpath[0] != "/":
+            dirpath = "/" + dirpath
+        dir_split = dirpath.split("/")
+
+        for level in range(2, 1 + len(dir_split)):
+            tmp_dir = "/".join(dir_split[0:level])
+
+            self.make_dir(tmp_dir)
+
+
+    def remove_dir(self, dirpath, recursively=False):
+        """Removes a directory.
+
+        Removes all contents of directory if `recursively=True`
+        specified. Otherwise, raises an exception.
+
+        """
+
+        dirpath = normalize_dirpath(dirpath)
+
+        files_to_delete = list(self.find_several({'$regex': "^" + dirpath}))
+
+        if not recursively and len(files_to_delete) > 1:
+            raise Exception("Directory is not empty")
+
+        [self.client_gfsbucket.delete(f._id) for f in files_to_delete]
+
+        return files_to_delete
+
+    def move_dir(self, dirpath, target_dirpath):
+        """Renames a directory"""
+
+        dirpath = normalize_dirpath(dirpath)
+        target_dirpath = normalize_dirpath(target_dirpath)
+        files = self.find_several({'$regex': "^" + dirpath})
+        for f in files:
+            old_filename = self.client_gridfs.get(f._id).filename
+            new_filename = old_filename.replace(dirpath, target_dirpath, 1)
+            self.client_gfsbucket.rename(f._id, new_filename)
+
+    def list_files(self, dirpath):
+        """List all files in provided path"""
+
+        dirpath = normalize_dirpath(dirpath)
+        return [file.filename for file in self.find_several({'$regex': "^" + dirpath + "(\w|\d)+/?$"})]
+
+    # TODO: add optional parameter `do_actually_delete', defaults to `True'.
+    # If False, then just mark file as deleted
+    def remove(self, filepath):
+        """Removes a file.
+
+        Raises a `NoFile` exception when attempted to remove a
+        non-existing file
+
+        """
+
+        f_id = self.find_file(filepath)
+
+        if f_id == None:
+            raise NoFile("Error: File", str(filename), "not found.")
+
+        self.client_gfsbucket.delete(f_id)
+</code></pre>
+  </div>
+
+  </header>
+
+  <section id="section-items">
+
+
+    <h2 class="section-title" id="header-classes">Classes</h2>
+      
+      <div class="item">
+      <p id="pystorage.storageuser.StorageClient" class="name">class <span class="ident">StorageClient</span></p>
+      
+  
+    <div class="desc"><p>This class represents a client api to mongo-based storage.</p>
+<p>Allows to:</p>
+<ul>
+<li>login with username and password</li>
+<li>switch user with another username and password</li>
+<li>upload file to storage</li>
+<li>download file from storage</li>
+<li>update (overwrite) files</li>
+<li>delete files</li>
+<li>list files in particular directory</li>
+<li>make directories</li>
+<li>remove directories</li>
+<li>rename (move) directories</li>
+</ul></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-pystorage.storageuser.StorageClient', this);">Show source &equiv;</a></p>
+  <div id="source-pystorage.storageuser.StorageClient" class="source">
+    <pre><code>class StorageClient():
+    """This class represents a client api to mongo-based storage.
+
+    Allows to:
+
+    * login with username and password
+    * switch user with another username and password
+    * upload file to storage
+    * download file from storage
+    * update (overwrite) files
+    * delete files
+    * list files in particular directory
+    * make directories
+    * remove directories
+    * rename (move) directories
+    """
+
+    def _login(self, username, password):
+        self.user = UserInfo(username, password)
+        self.auth_str = connection_string(self.user, self.server.config)
+        self.client = pymongo.MongoClient(self.auth_str,
+                                          serverSelectionTimeoutMS=1)
+
+        try:
+            self.client.server_info()
+        except pymongo.errors.OperationFailure:
+            raise AuthError("Wrong username or password.")
+
+        self.db_name = self.user.username + self.server.config["users"]["db_suffix"]
+
+        self.client_gridfs = gridfs.GridFS(self.client[self.server.config["storage_db"]],
+                                           collection=self.db_name)
+        self.client_gfsbucket = gridfs.GridFSBucket(self.client[self.server.config["storage_db"]],
+                                                    bucket_name=self.db_name)
+
+    def __init__(self, username, password, server=None):
+        """Creates a new instance of StorageClient.
+
+        Note: `server` is required, for now.
+
+        """
+
+        if server == None:
+            raise Exception("Server is not provided")
+
+        self.server = server
+        self._login(username, password)
+
+
+    def switch_user(self, username, password):
+        """Switches user to another
+
+        Previous user become logged out
+
+        """
+
+        self.client.close()
+        self._login(username, password)
+
+    def upload(self, source, target_filepath, replace=True):
+        """Uploads a file from `source` path to `target` inside storage
+
+        If `replace` is false, then `AlreadyExists` exception is
+        raised
+
+        """
+
+        target_filepath = normalize_filepath(target_filepath)
+
+        if self.find_file(target_filepath) != None:
+            if replace:
+                self.remove(target_filepath)
+            else:
+                raise AlreadyExists("File already exists")
+
+        self.make_dirs(os.path.dirname(target_filepath))
+
+        with open(source, "rb") as source_file:
+            file_id = self.client_gfsbucket.upload_from_stream(target_filepath,
+                                                               source_file)
+
+
+    def download_to_file(self, filename, target_path = None):
+        """Downloads file from internal storage path (`filename`)
+        to local `target_path`.
+
+        Returns a path of downloaded file.
+
+        If `target_path` is not specified, then saves it to
+        `localpath` (see configuration for details)
+
+        Raises `NoFile` if there is no file by `filename` path
+
+        """
+
+        f_id = self.find_file(filename)
+        if f_id == None:
+            raise NoFile("File", str(filename), "not found.")
+
+        if target_path == None:
+            target_path = filename
+
+        if os.path.dirname(target_path) != "":
+            os.makedirs(os.path.dirname(target_path), exist_ok = True)
+
+        with open(target_path, "wb") as target_file:
+            try:
+                self.client_gfsbucket.download_to_stream(f_id, target_file)
+                return target_path
+            except gridfs.errors.NoFile:
+                raise NoFile("Error: File", str(filename), "condn't been downloaded.")
+
+    def find_file(self, filepath):
+        """Finds file and returns it's `ObjectID`.
+
+        Otherwise, returns `None`.
+
+        """
+
+        if filepath[0] != "/":
+            filepath = "/" + filepath
+        for item in self.client_gfsbucket.find( {"filename": filepath } ).sort("uploadDate", -1).limit(1):
+            return item._id
+
+    def find_dir(self, dirpath):
+        """Finds a directory and returns it's `ObjectID`.
+
+        Otherwise, returns `None`.
+
+        """
+
+        _dir = self.find_file(dirpath)
+
+        if _dir != None and self.client_gridfs.get(_dir).metadata == {"is_dir" : True}:
+            return _dir
+        else:
+            return None
+
+    def find_several(self, filepath):
+        """Returns an iterator over files have been found."""
+
+        return self.client_gfsbucket.find( {"filename": filepath } )
+
+    def rename(self, filepath, new_filepath):
+        """Rename file at `filepath` to `new_filepath`
+
+        If no file was found, raises `NoFile` exception
+
+        """
+
+        f_id = self.find_file(filepath)
+
+        if f_id == None:
+            raise NoFile("Error: File", str(filepath), "not found.")
+
+        self.client_gfsbucket.rename(f_id, new_filepath)
+
+
+    def make_dir(self, dirpath):
+        """Create a pseudo directory. Use `make_dirs` to create nested
+        directories.
+
+        Raises `AlreadyExists` when directory already presented in storage
+
+        """
+
+        dirpath = normalize_dirpath(dirpath)
+
+        ffile = self.find_file(dirpath)
+        if ffile != None:
+            meta = self.client_gridfs.get(ffile).metadata # or self.find_file(dirpath + "/"):
+            if meta == {"is_dir" : False}:
+                raise AlreadyExists("File already exists")
+            elif meta == {"is_dir" : True}:
+                return ffile
+
+        self.client_gridfs.put(b"", filename = dirpath, metadata = { "is_dir": True })
+
+    def make_dirs(self, dirpath):
+        """Similar to make_dir, additionally creates intermediate directories
+        as required.
+
+        """
+
+        if dirpath[0] != "/":
+            dirpath = "/" + dirpath
+        dir_split = dirpath.split("/")
+
+        for level in range(2, 1 + len(dir_split)):
+            tmp_dir = "/".join(dir_split[0:level])
+
+            self.make_dir(tmp_dir)
+
+
+    def remove_dir(self, dirpath, recursively=False):
+        """Removes a directory.
+
+        Removes all contents of directory if `recursively=True`
+        specified. Otherwise, raises an exception.
+
+        """
+
+        dirpath = normalize_dirpath(dirpath)
+
+        files_to_delete = list(self.find_several({'$regex': "^" + dirpath}))
+
+        if not recursively and len(files_to_delete) > 1:
+            raise Exception("Directory is not empty")
+
+        [self.client_gfsbucket.delete(f._id) for f in files_to_delete]
+
+        return files_to_delete
+
+    def move_dir(self, dirpath, target_dirpath):
+        """Renames a directory"""
+
+        dirpath = normalize_dirpath(dirpath)
+        target_dirpath = normalize_dirpath(target_dirpath)
+        files = self.find_several({'$regex': "^" + dirpath})
+        for f in files:
+            old_filename = self.client_gridfs.get(f._id).filename
+            new_filename = old_filename.replace(dirpath, target_dirpath, 1)
+            self.client_gfsbucket.rename(f._id, new_filename)
+
+    def list_files(self, dirpath):
+        """List all files in provided path"""
+
+        dirpath = normalize_dirpath(dirpath)
+        return [file.filename for file in self.find_several({'$regex': "^" + dirpath + "(\w|\d)+/?$"})]
+
+    # TODO: add optional parameter `do_actually_delete', defaults to `True'.
+    # If False, then just mark file as deleted
+    def remove(self, filepath):
+        """Removes a file.
+
+        Raises a `NoFile` exception when attempted to remove a
+        non-existing file
+
+        """
+
+        f_id = self.find_file(filepath)
+
+        if f_id == None:
+            raise NoFile("Error: File", str(filename), "not found.")
+
+        self.client_gfsbucket.delete(f_id)
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#pystorage.storageuser.StorageClient">StorageClient</a></li>
+          <li>builtins.object</li>
+          </ul>
+          <h3>Static methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="pystorage.storageuser.StorageClient.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self, username, password, server=None)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Creates a new instance of StorageClient.</p>
+<p>Note: <code>server</code> is required, for now.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-pystorage.storageuser.StorageClient.__init__', this);">Show source &equiv;</a></p>
+  <div id="source-pystorage.storageuser.StorageClient.__init__" class="source">
+    <pre><code>def __init__(self, username, password, server=None):
+    """Creates a new instance of StorageClient.
+    Note: `server` is required, for now.
+    """
+    if server == None:
+        raise Exception("Server is not provided")
+    self.server = server
+    self._login(username, password)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="pystorage.storageuser.StorageClient.download_to_file">
+    <p>def <span class="ident">download_to_file</span>(</p><p>self, filename, target_path=None)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Downloads file from internal storage path (<code>filename</code>)
+to local <code>target_path</code>.</p>
+<p>Returns a path of downloaded file.</p>
+<p>If <code>target_path</code> is not specified, then saves it to
+<code>localpath</code> (see configuration for details)</p>
+<p>Raises <code>NoFile</code> if there is no file by <code>filename</code> path</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-pystorage.storageuser.StorageClient.download_to_file', this);">Show source &equiv;</a></p>
+  <div id="source-pystorage.storageuser.StorageClient.download_to_file" class="source">
+    <pre><code>def download_to_file(self, filename, target_path = None):
+    """Downloads file from internal storage path (`filename`)
+    to local `target_path`.
+    Returns a path of downloaded file.
+    If `target_path` is not specified, then saves it to
+    `localpath` (see configuration for details)
+    Raises `NoFile` if there is no file by `filename` path
+    """
+    f_id = self.find_file(filename)
+    if f_id == None:
+        raise NoFile("File", str(filename), "not found.")
+    if target_path == None:
+        target_path = filename
+    if os.path.dirname(target_path) != "":
+        os.makedirs(os.path.dirname(target_path), exist_ok = True)
+    with open(target_path, "wb") as target_file:
+        try:
+            self.client_gfsbucket.download_to_stream(f_id, target_file)
+            return target_path
+        except gridfs.errors.NoFile:
+            raise NoFile("Error: File", str(filename), "condn't been downloaded.")
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="pystorage.storageuser.StorageClient.find_dir">
+    <p>def <span class="ident">find_dir</span>(</p><p>self, dirpath)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Finds a directory and returns it's <code>ObjectID</code>.</p>
+<p>Otherwise, returns <code>None</code>.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-pystorage.storageuser.StorageClient.find_dir', this);">Show source &equiv;</a></p>
+  <div id="source-pystorage.storageuser.StorageClient.find_dir" class="source">
+    <pre><code>def find_dir(self, dirpath):
+    """Finds a directory and returns it's `ObjectID`.
+    Otherwise, returns `None`.
+    """
+    _dir = self.find_file(dirpath)
+    if _dir != None and self.client_gridfs.get(_dir).metadata == {"is_dir" : True}:
+        return _dir
+    else:
+        return None
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="pystorage.storageuser.StorageClient.find_file">
+    <p>def <span class="ident">find_file</span>(</p><p>self, filepath)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Finds file and returns it's <code>ObjectID</code>.</p>
+<p>Otherwise, returns <code>None</code>.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-pystorage.storageuser.StorageClient.find_file', this);">Show source &equiv;</a></p>
+  <div id="source-pystorage.storageuser.StorageClient.find_file" class="source">
+    <pre><code>def find_file(self, filepath):
+    """Finds file and returns it's `ObjectID`.
+    Otherwise, returns `None`.
+    """
+    if filepath[0] != "/":
+        filepath = "/" + filepath
+    for item in self.client_gfsbucket.find( {"filename": filepath } ).sort("uploadDate", -1).limit(1):
+        return item._id
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="pystorage.storageuser.StorageClient.find_several">
+    <p>def <span class="ident">find_several</span>(</p><p>self, filepath)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns an iterator over files have been found.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-pystorage.storageuser.StorageClient.find_several', this);">Show source &equiv;</a></p>
+  <div id="source-pystorage.storageuser.StorageClient.find_several" class="source">
+    <pre><code>def find_several(self, filepath):
+    """Returns an iterator over files have been found."""
+    return self.client_gfsbucket.find( {"filename": filepath } )
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="pystorage.storageuser.StorageClient.list_files">
+    <p>def <span class="ident">list_files</span>(</p><p>self, dirpath)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>List all files in provided path</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-pystorage.storageuser.StorageClient.list_files', this);">Show source &equiv;</a></p>
+  <div id="source-pystorage.storageuser.StorageClient.list_files" class="source">
+    <pre><code>def list_files(self, dirpath):
+    """List all files in provided path"""
+    dirpath = normalize_dirpath(dirpath)
+    return [file.filename for file in self.find_several({'$regex': "^" + dirpath + "(\w|\d)+/?$"})]
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="pystorage.storageuser.StorageClient.make_dir">
+    <p>def <span class="ident">make_dir</span>(</p><p>self, dirpath)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Create a pseudo directory. Use <code>make_dirs</code> to create nested
+directories.</p>
+<p>Raises <code>AlreadyExists</code> when directory already presented in storage</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-pystorage.storageuser.StorageClient.make_dir', this);">Show source &equiv;</a></p>
+  <div id="source-pystorage.storageuser.StorageClient.make_dir" class="source">
+    <pre><code>def make_dir(self, dirpath):
+    """Create a pseudo directory. Use `make_dirs` to create nested
+    directories.
+    Raises `AlreadyExists` when directory already presented in storage
+    """
+    dirpath = normalize_dirpath(dirpath)
+    ffile = self.find_file(dirpath)
+    if ffile != None:
+        meta = self.client_gridfs.get(ffile).metadata # or self.find_file(dirpath + "/"):
+        if meta == {"is_dir" : False}:
+            raise AlreadyExists("File already exists")
+        elif meta == {"is_dir" : True}:
+            return ffile
+    self.client_gridfs.put(b"", filename = dirpath, metadata = { "is_dir": True })
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="pystorage.storageuser.StorageClient.make_dirs">
+    <p>def <span class="ident">make_dirs</span>(</p><p>self, dirpath)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Similar to make_dir, additionally creates intermediate directories
+as required.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-pystorage.storageuser.StorageClient.make_dirs', this);">Show source &equiv;</a></p>
+  <div id="source-pystorage.storageuser.StorageClient.make_dirs" class="source">
+    <pre><code>def make_dirs(self, dirpath):
+    """Similar to make_dir, additionally creates intermediate directories
+    as required.
+    """
+    if dirpath[0] != "/":
+        dirpath = "/" + dirpath
+    dir_split = dirpath.split("/")
+    for level in range(2, 1 + len(dir_split)):
+        tmp_dir = "/".join(dir_split[0:level])
+        self.make_dir(tmp_dir)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="pystorage.storageuser.StorageClient.move_dir">
+    <p>def <span class="ident">move_dir</span>(</p><p>self, dirpath, target_dirpath)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Renames a directory</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-pystorage.storageuser.StorageClient.move_dir', this);">Show source &equiv;</a></p>
+  <div id="source-pystorage.storageuser.StorageClient.move_dir" class="source">
+    <pre><code>def move_dir(self, dirpath, target_dirpath):
+    """Renames a directory"""
+    dirpath = normalize_dirpath(dirpath)
+    target_dirpath = normalize_dirpath(target_dirpath)
+    files = self.find_several({'$regex': "^" + dirpath})
+    for f in files:
+        old_filename = self.client_gridfs.get(f._id).filename
+        new_filename = old_filename.replace(dirpath, target_dirpath, 1)
+        self.client_gfsbucket.rename(f._id, new_filename)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="pystorage.storageuser.StorageClient.remove">
+    <p>def <span class="ident">remove</span>(</p><p>self, filepath)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Removes a file.</p>
+<p>Raises a <code>NoFile</code> exception when attempted to remove a
+non-existing file</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-pystorage.storageuser.StorageClient.remove', this);">Show source &equiv;</a></p>
+  <div id="source-pystorage.storageuser.StorageClient.remove" class="source">
+    <pre><code>def remove(self, filepath):
+    """Removes a file.
+    Raises a `NoFile` exception when attempted to remove a
+    non-existing file
+    """
+    f_id = self.find_file(filepath)
+    if f_id == None:
+        raise NoFile("Error: File", str(filename), "not found.")
+    self.client_gfsbucket.delete(f_id)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="pystorage.storageuser.StorageClient.remove_dir">
+    <p>def <span class="ident">remove_dir</span>(</p><p>self, dirpath, recursively=False)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Removes a directory.</p>
+<p>Removes all contents of directory if <code>recursively=True</code>
+specified. Otherwise, raises an exception.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-pystorage.storageuser.StorageClient.remove_dir', this);">Show source &equiv;</a></p>
+  <div id="source-pystorage.storageuser.StorageClient.remove_dir" class="source">
+    <pre><code>def remove_dir(self, dirpath, recursively=False):
+    """Removes a directory.
+    Removes all contents of directory if `recursively=True`
+    specified. Otherwise, raises an exception.
+    """
+    dirpath = normalize_dirpath(dirpath)
+    files_to_delete = list(self.find_several({'$regex': "^" + dirpath}))
+    if not recursively and len(files_to_delete) > 1:
+        raise Exception("Directory is not empty")
+    [self.client_gfsbucket.delete(f._id) for f in files_to_delete]
+    return files_to_delete
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="pystorage.storageuser.StorageClient.rename">
+    <p>def <span class="ident">rename</span>(</p><p>self, filepath, new_filepath)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Rename file at <code>filepath</code> to <code>new_filepath</code></p>
+<p>If no file was found, raises <code>NoFile</code> exception</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-pystorage.storageuser.StorageClient.rename', this);">Show source &equiv;</a></p>
+  <div id="source-pystorage.storageuser.StorageClient.rename" class="source">
+    <pre><code>def rename(self, filepath, new_filepath):
+    """Rename file at `filepath` to `new_filepath`
+    If no file was found, raises `NoFile` exception
+    """
+    f_id = self.find_file(filepath)
+    if f_id == None:
+        raise NoFile("Error: File", str(filepath), "not found.")
+    self.client_gfsbucket.rename(f_id, new_filepath)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="pystorage.storageuser.StorageClient.switch_user">
+    <p>def <span class="ident">switch_user</span>(</p><p>self, username, password)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Switches user to another</p>
+<p>Previous user become logged out</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-pystorage.storageuser.StorageClient.switch_user', this);">Show source &equiv;</a></p>
+  <div id="source-pystorage.storageuser.StorageClient.switch_user" class="source">
+    <pre><code>def switch_user(self, username, password):
+    """Switches user to another
+    Previous user become logged out
+    """
+    self.client.close()
+    self._login(username, password)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="pystorage.storageuser.StorageClient.upload">
+    <p>def <span class="ident">upload</span>(</p><p>self, source, target_filepath, replace=True)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Uploads a file from <code>source</code> path to <code>target</code> inside storage</p>
+<p>If <code>replace</code> is false, then <code>AlreadyExists</code> exception is
+raised</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-pystorage.storageuser.StorageClient.upload', this);">Show source &equiv;</a></p>
+  <div id="source-pystorage.storageuser.StorageClient.upload" class="source">
+    <pre><code>def upload(self, source, target_filepath, replace=True):
+    """Uploads a file from `source` path to `target` inside storage
+    If `replace` is false, then `AlreadyExists` exception is
+    raised
+    """
+    target_filepath = normalize_filepath(target_filepath)
+    if self.find_file(target_filepath) != None:
+        if replace:
+            self.remove(target_filepath)
+        else:
+            raise AlreadyExists("File already exists")
+    self.make_dirs(os.path.dirname(target_filepath))
+    with open(source, "rb") as source_file:
+        file_id = self.client_gfsbucket.upload_from_stream(target_filepath,
+                                                           source_file)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+          <h3>Instance variables</h3>
+            <div class="item">
+            <p id="pystorage.storageuser.StorageClient.server" class="name">var <span class="ident">server</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+      </div>
+      </div>
+
+  </section>
+
+    </article>
+  <div class="clear"> </div>
+  <footer id="footer">
+    <p>
+      Documentation generated by
+      <a href="https://github.com/BurntSushi/pdoc">pdoc 0.3.2</a>
+    </p>
+
+    <p>pdoc is in the public domain with the
+      <a href="http://unlicense.org">UNLICENSE</a></p>
+
+    <p>Design by <a href="http://nadh.in">Kailash Nadh</a></p>
+  </footer>
+</div>
+</body>
+</html>
