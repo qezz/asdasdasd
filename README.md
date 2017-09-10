@@ -6,7 +6,7 @@ interface to operate files.
 ## Requirements ##
 
 #### 1. Python 3.6
-#### 2. mongod version 3.2 and higher
+#### 2. mongodb version 3.2 and higher
 
 ``` bash
 brew install mongod
@@ -46,11 +46,12 @@ You should provide minimal configuration for mongo. See example below.
     "localpath": "files/",
     "role_suffix": "_role",
     "db_suffix": "_storage",
-    "allowed_actions":
-    [ ... ]
+    "allowed_actions": [ ... ]
   }
 }
 ```
+
+([here](test/config_example.json) with expanded `allowed_actions` section)
 
 Useful values: 
 
