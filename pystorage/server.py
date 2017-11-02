@@ -29,7 +29,10 @@ class Server():
         except:
             raise ConfigError("Corrupted configuration provided.")
 
-        self.admin = pymongo.MongoClient("mongodb://%s:%s@%s/%s" % (quote_plus("admin"), quote_plus("admin"), "127.0.0.1", "admin"))
+        self.admin = pymongo.MongoClient(
+            "mongodb://%s:%s@%s/%s" % (quote_plus(config["admin"]["username"]),
+                                       quote_plus(config["admin"]["password"]),
+                                       quote_plus(self.host), config["admin"]["default_db"]))
 
     def _privilege_for_db(username, config, db_suffix):
         return {
